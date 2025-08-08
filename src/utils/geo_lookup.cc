@@ -131,8 +131,8 @@ bool GeoLookup::lookup(const std::string& target, Transaction *trans,
         int gai_error, mmdb_error;
         MMDB_lookup_result_s r;
 
-        r = MMDB_lookup_string(&mmdb, target.c_str(), &gai_error, &mmdb_error);
-
+        
+        r = MMDB_lookup_string(const_cast<MMDB_s*>(&mmdb), target.c_str(), &gai_error, &mmdb_error);
         if (gai_error) {
             if (debug) {
                 debug(4, "MaxMind: Error from getaddrinfo for: " +
